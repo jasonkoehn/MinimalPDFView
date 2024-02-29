@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		876B0BCE2B90D4E5003627D3 /* O Where Are the Reapers?.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 876B0BCD2B90D4E5003627D3 /* O Where Are the Reapers?.pdf */; };
+		876B0BD02B90D52A003627D3 /* Jesus, Priceless Treasure.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 876B0BCF2B90D52A003627D3 /* Jesus, Priceless Treasure.pdf */; };
 		877CC8372B86A76E00EF3FBD /* SwiftUIView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CC8362B86A76E00EF3FBD /* SwiftUIView.swift */; };
 		877CC8392B86A78F00EF3FBD /* ConvertPDFtoImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CC8382B86A78F00EF3FBD /* ConvertPDFtoImages.swift */; };
 		877CC83B2B87A3D400EF3FBD /* TrackTouchesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 877CC83A2B87A3D400EF3FBD /* TrackTouchesView.swift */; };
@@ -15,11 +17,11 @@
 		87BB59812B16548F00FA170B /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87BB59802B16548F00FA170B /* ContentView.swift */; };
 		87BB59832B16549000FA170B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87BB59822B16549000FA170B /* Assets.xcassets */; };
 		87BB59872B16549000FA170B /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 87BB59862B16549000FA170B /* Preview Assets.xcassets */; };
-		87FCFBAE2B7E86A300673CA5 /* Still-Guide-Me-Now-Official.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 87FCFBAC2B7E86A300673CA5 /* Still-Guide-Me-Now-Official.pdf */; };
-		87FCFBAF2B7E86A300673CA5 /* One-Who-Knows-the-Stars.pdf in Resources */ = {isa = PBXBuildFile; fileRef = 87FCFBAD2B7E86A300673CA5 /* One-Who-Knows-the-Stars.pdf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		876B0BCD2B90D4E5003627D3 /* O Where Are the Reapers?.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "O Where Are the Reapers?.pdf"; sourceTree = "<group>"; };
+		876B0BCF2B90D52A003627D3 /* Jesus, Priceless Treasure.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Jesus, Priceless Treasure.pdf"; sourceTree = "<group>"; };
 		877CC8362B86A76E00EF3FBD /* SwiftUIView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUIView.swift; sourceTree = "<group>"; };
 		877CC8382B86A78F00EF3FBD /* ConvertPDFtoImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConvertPDFtoImages.swift; sourceTree = "<group>"; };
 		877CC83A2B87A3D400EF3FBD /* TrackTouchesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackTouchesView.swift; sourceTree = "<group>"; };
@@ -30,8 +32,6 @@
 		87BB59822B16549000FA170B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		87BB59842B16549000FA170B /* MinimalPDFView.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MinimalPDFView.entitlements; sourceTree = "<group>"; };
 		87BB59862B16549000FA170B /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		87FCFBAC2B7E86A300673CA5 /* Still-Guide-Me-Now-Official.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "Still-Guide-Me-Now-Official.pdf"; sourceTree = "<group>"; };
-		87FCFBAD2B7E86A300673CA5 /* One-Who-Knows-the-Stars.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = "One-Who-Knows-the-Stars.pdf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,8 +70,8 @@
 				877CC8362B86A76E00EF3FBD /* SwiftUIView.swift */,
 				877CC8382B86A78F00EF3FBD /* ConvertPDFtoImages.swift */,
 				877CC83A2B87A3D400EF3FBD /* TrackTouchesView.swift */,
-				87FCFBAD2B7E86A300673CA5 /* One-Who-Knows-the-Stars.pdf */,
-				87FCFBAC2B7E86A300673CA5 /* Still-Guide-Me-Now-Official.pdf */,
+				876B0BCD2B90D4E5003627D3 /* O Where Are the Reapers?.pdf */,
+				876B0BCF2B90D52A003627D3 /* Jesus, Priceless Treasure.pdf */,
 				87BB59822B16549000FA170B /* Assets.xcassets */,
 				87BB59842B16549000FA170B /* MinimalPDFView.entitlements */,
 				87BB59852B16549000FA170B /* Preview Content */,
@@ -145,10 +145,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				87FCFBAE2B7E86A300673CA5 /* Still-Guide-Me-Now-Official.pdf in Resources */,
+				876B0BCE2B90D4E5003627D3 /* O Where Are the Reapers?.pdf in Resources */,
+				876B0BD02B90D52A003627D3 /* Jesus, Priceless Treasure.pdf in Resources */,
 				87BB59872B16549000FA170B /* Preview Assets.xcassets in Resources */,
 				87BB59832B16549000FA170B /* Assets.xcassets in Resources */,
-				87FCFBAF2B7E86A300673CA5 /* One-Who-Knows-the-Stars.pdf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     
-    private let pdfUrl: URL = Bundle.main.url(forResource: "Still-Guide-Me-Now-Official", withExtension: "pdf")!
-    //private let pdfUrl: URL = Bundle.main.url(forResource: "One-Who-Knows-the-Stars", withExtension: "pdf")!
+    private let pdfUrl: URL = Bundle.main.url(forResource: "Jesus, Priceless Treasure", withExtension: "pdf")!
+//    private let pdfUrl: URL = Bundle.main.url(forResource: "O Where Are the Reapers?", withExtension: "pdf")!
     
     @State var scale = 1.0
     @State var lastScale = 0.0
