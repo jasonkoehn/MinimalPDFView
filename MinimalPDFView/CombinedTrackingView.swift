@@ -1,13 +1,13 @@
 //
-//  ContentView.swift
+//  CombinedTrackingView.swift
 //  MinimalPDFView
 //
-//  Created by Jason Koehn on 11/28/23.
+//  Created by Jason Koehn on 2/22/24.
 //
 
 import SwiftUI
 
-struct ContentView: View {
+struct CombinedTrackingView: View {
     
     private let pdfUrl: URL = Bundle.main.url(forResource: "Still-Guide-Me-Now-Official", withExtension: "pdf")!
     //private let pdfUrl: URL = Bundle.main.url(forResource: "One-Who-Knows-the-Stars", withExtension: "pdf")!
@@ -15,7 +15,11 @@ struct ContentView: View {
     @State var scale = 1.0
     @State var lastScale = 0.0
     
-//    @State var anchorPoint: UnitPoint = UnitPoint(x: 0.5, y: 0.3456)
+    
+    @State var uiScale: CGFloat = 1.0
+    @State var uiAnchorPoint: UnitPoint = .zero
+    
+    //@State var anchorPoint: UnitPoint = UnitPoint(x: 0.5, y: 0.3456)
     
     @State var offset: CGSize = .zero
     @State var lastOffset: CGSize = .zero
@@ -49,53 +53,16 @@ struct ContentView: View {
                             .resizable()
                             .frame(width: frameWidth, height: frameHeight)
                             .aspectRatio(contentMode: .fit)
-                            .scaleEffect(scale)
-                            //.scaleEffect(scale, anchor: anchorPoint)
+                            //.scaleEffect(scale)
+                            .scaleEffect(uiScale, anchor: uiAnchorPoint)
                             .offset(offset)
-                            .gesture(
-                                MagnificationGesture(minimumScaleDelta: 0)
-                                    .onChanged({ value in
-                                        withAnimation(.interactiveSpring()) {
-                                            scale = handleScaleChange(value)
-                                        }
-                                    })
-                                    .onEnded({ _ in
-                                        if scale < 1.0 {
-                                            withAnimation(.interactiveSpring) {
-                                                scale = 1.0
-                                                offset.width = 0.0
-                                                lastOffset.width = 0.0
-                                                lastScale = scale
-                                            }
-                                            getAllowableExtraSize()
-                                        } else {
-                                            lastScale = scale
-                                            getAllowableExtraSize()
-                                        }
-                                    })
-                                    .simultaneously(
-                                        with: DragGesture(minimumDistance: 0)
-                                            .onChanged({ value in
-                                                withAnimation(.interactiveSpring()) {
-                                                    offset = handleOffsetChange(value.translation)
-                                                }
-                                            })
-                                            .onEnded({ _ in
-                                                withAnimation(.interactiveSpring) {
-                                                    if (offset.height) > allowableExtraHeight {
-                                                        offset.height = allowableExtraHeight
-                                                    } else if (offset.height) < (allowableScrollOffset + -allowableExtraHeight) {
-                                                        offset.height = (allowableScrollOffset + -allowableExtraHeight)
-                                                    }
-                                                    
-                                                    lastOffset = offset
-                                                }
-                                            })
-                                    )
-                            )
+                            
+                            .overlay {
+                                GestureTransformView(width: $viewWidth, height: $viewHeight, scale: $uiScale, anchorPoint: $uiAnchorPoint)
+                            }
                         Spacer()
                     }
-                    .background(.blue)
+                    .background(.teal)
                     .task {
                         viewWidth = geo.size.width
                         viewHeight = geo.size.height
@@ -173,18 +140,81 @@ struct ContentView: View {
         
         return newOffset
     }
-    
-    //    if (offset.height + lastOffset.height) > allowableExtraHeight {
-    //        newOffset.height = allowableExtraHeight
-    //    } else if (offset.height + lastOffset.height) > (allowableScrollOffset + -allowableExtraHeight) {
-    //        newOffset.height = offset.height + lastOffset.height
-    //    } else {
-    //        newOffset.height = (allowableScrollOffset + -allowableExtraHeight)
-    //    }
-    
+}
+
+#Preview {
+    CombinedTrackingView()
 }
 
 
-#Preview {
-    ContentView()
+
+struct GestureTransformView: UIViewRepresentable {
+    @Binding var width: CGFloat
+    @Binding var height: CGFloat
+    @Binding var scale: CGFloat
+    @Binding var anchorPoint: UnitPoint
+    
+    func makeUIView(context: Context) -> UIView {
+        let view = UIView()
+        
+        let zoomRecognizer = UIPinchGestureRecognizer(
+            target: context.coordinator,
+            action: #selector(Coordinator.zoom(_:)))
+        
+        zoomRecognizer.delegate = context.coordinator
+        view.addGestureRecognizer(zoomRecognizer)
+        context.coordinator.zoomRecognizer = zoomRecognizer
+        
+        return view
+    }
+    
+    func updateUIView(_ uiView: UIView, context: Context) {}
+    
+    func makeCoordinator() -> Coordinator {
+        Coordinator(self)
+    }
+}
+
+extension GestureTransformView {
+    class Coordinator: NSObject, UIGestureRecognizerDelegate {
+        var parent: GestureTransformView
+        var zoomRecognizer: UIPinchGestureRecognizer?
+                
+        init(_ parent: GestureTransformView){
+            self.parent = parent
+        }
+        
+        func setGestureStart(_ gesture: UIGestureRecognizer) {
+            let point = gesture.location(in: gesture.view)
+            parent.anchorPoint.x = point.x / parent.width
+            parent.anchorPoint.y = point.y / parent.height
+        }
+        
+        @objc func zoom(_ gesture: UIPinchGestureRecognizer) {
+            switch gesture.state {
+            case .began:
+                setGestureStart(gesture)
+                break
+            case .changed:
+                applyZoom(gesture)
+                break
+            case .cancelled:
+                fallthrough
+            case .ended:
+                applyZoom(gesture)
+//                zoomRecognizer?.scale = 1
+            default:
+                break
+            }
+        }
+        
+        func applyZoom(_ gesture: UIGestureRecognizer) {
+            parent.scale = zoomRecognizer?.scale ?? 1
+            let point = gesture.location(in: gesture.view)
+            print(point.x)
+            print(parent.width)
+            parent.anchorPoint.x = point.x / parent.width
+            parent.anchorPoint.y = point.y / parent.height
+        }
+    }
 }

@@ -11,7 +11,7 @@ import SwiftUI
 struct MinimalPDFViewApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            TrackTouchesView()
         }
     }
 }
